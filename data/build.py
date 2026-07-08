@@ -55,7 +55,7 @@ def build_projects_json():
                 project_data = json.load(f)
 
             # 필수 필드 검증
-            required_fields = ["id", "title", "description", "tags", "link"]
+            required_fields = ["id", "title", "description", "tags", "year"]
             missing_fields = [field for field in required_fields if field not in project_data]
 
             if missing_fields:

@@ -1,25 +1,77 @@
 [
   {
-    "id": "interlocutor-adaptation",
-    "title": "Interlocutor Adaptation Dialogue System",
-    "description": "Incrementally Revealed Persona 환경에서 대화 상대방의 변화에 동적으로 적응하는 대화 생성 프레임워크 연구 및 데이터셋 구축",
+    "type": "project",
+    "year": "2026",
+    "id": "neuromorphic_edge_ai",
+    "title": "뉴로모픽 칩 기반 Edge AI",
+    "description": "Loihi, SpiNNaker 등 뉴로모픽 프로세서를 대상으로 SNN 모델을 배포하고, 기존 GPU 기반 ANN과 추론 속도 및 전력 효율을 비교하는 Edge AI 프로젝트.",
+    "detail": "■ 핵심 연구 및 실험 내역\n- Intel Loihi 및 SpiNNaker 하드웨어 보드의 신경망 아키텍처 분석 및 가속 환경 구축\n- 연속적인 실시간 아날로그 시계열 데이터를 뇌의 뉴런 세포 동작 방식인 '스파이크 타이밍(Spike Timing)' 데이터로 인코딩하는 알고리즘 최적화\n- GPU 기반 추론 아키텍처 대비 실시간 데이터 처리 효율을 추적하여 하드웨어 제약 조건 하에서 Edge 인공지능 배포 솔루션 실증 완료",
     "tags": [
-      "NLP",
-      "Persona",
-      "Dialogue System",
-      "Dataset"
-    ],
-    "link": "https://github.com/example/interlocutor-adaptation"
+      "snn",
+      "neuromorphic",
+      "edge-ai",
+      "low-power"
+    ]
   },
   {
-    "id": "persona-scheduling",
-    "title": "Dynamic Persona Scheduling Framework",
-    "description": "대화 문맥에 따라 페르소나의 활성화 필요성을 실시간으로 평가하고 스케줄링하는 모듈형 아키텍처 개발",
+    "type": "project",
+    "year": "2026",
+    "id": "snn_ai",
+    "title": "비 역전파 ai 알고리즘",
+    "description": "뉴로모픽 칩을 이용한 snn방식의 ai알고리즘",
+    "detail": "■ 기술 메커니즘 상세\n- 인공신경망(ANN)의 수학적 계산 방식인 '오차 역전파(Backpropagation)'의 하드웨어 한계를 극복하기 위한 대안 알고리즘 연구\n- 생물학적 뇌의 학습 기전인 STDP(Spike-Timing-Dependent Plasticity, 스파이크 타이밍 의존 가소성) 메커니즘 설계\n- 하드웨어 회로 자체에서 국소적(Local)으로 가중치가 자율 업데이트되는 비역전파 기반 학습 파이프라인 검증 성공",
     "tags": [
-      "LLM",
-      "Prompt Engineering",
-      "Evaluation Metric"
-    ],
+      "snn"
+    ]
+  },
+  {
+    "type": "project",
+    "year": "2026",
+    "id": "snn_object_detection",
+    "title": "SNN 기반 저전력 객체 인식",
+    "description": "Spiking Neural Network를 이용하여 이벤트 카메라 데이터를 실시간으로 처리하고 저전력 객체 인식 모델을 구현. 뉴로모픽 하드웨어 적용을 고려한 스파이크 기반 추론을 수행.",
+    "detail": "■ 구현 및 가속 명세\n- 변화된 빛의 픽셀 단위 전압 이벤트만 포착하는 이벤트 카메라(DVS) 센서 데이터 실시간 스트리밍 정제\n- 스파이크 기반 컨볼루션 신경망(Spiking CNN) 구조 설계 및 객체 바운딩 박스 추적 모델 학습\n- 불필요한 프레임 연산을 획기적으로 줄여, 정지 상태 화면에서는 연산량이 0에 수렴하는 극단적 저전력 임베디드 컴퓨터 비전 아키텍처 프로토타입 구현",
+    "tags": [
+      "snn",
+      "neuromorphic",
+      "computer-vision",
+      "event-camera"
+    ]
+  },
+  {
+    "type": "experience",
+    "year": "2025",
+    "title": "정보기술 연합 동아리 오픈소스 기획 멤버",
+    "description": "협업 개발 생태계에서 다국적 개발자들과 소통하며 대규모 레포지토리 기여 및 패키지 번들러 관리 역할을 수행했습니다.",
+    "detail": "■ 활동 및 협업 기록\n- 대규모 트래픽 및 다국적 오픈소스 프로젝트 아키텍처의 의존성 분석 작업 참여\n- 현대적 자바스크립트 패키지 번들러 도구 시스템 최적화를 위한 린트 룰 및 파이프라인 기획\n- 글로벌 개발자 커뮤니티와의 동기적/비동기적 이슈 트래킹 코드 기여 및 형상 관리 흐름 지휘 경험",
+    "tags": ["Git", "Open-Source", "Collaboration"],
     "link": "#"
+  },
+  {
+    "type": "education",
+    "year": "2022 - 2026",
+    "title": "컴퓨터공학과 학사 졸업",
+    "description": "인공지능 소사이어티 학회 및 컴퓨터 그래픽스, 임베디드 시스템 소프트웨어 공학 과정을 우수한 성적으로 이수했습니다.",
+    "detail": "■ 이수 교과목 및 학업 성과\n- 컴퓨터 그래픽스 파이프라인 수학 및 하드웨어 가속 원리 마스터\n- 임베디드 시스템 레벨의 저수준(C/C++) 프로그래밍 기반 인터럽트 및 메모리 제어 실습 수행\n- 인공지능 소사이어티 학학회 내에서 연구 논문 세미나 및 실무 딥러닝 프레임워크 학습 소모임 주도",
+    "tags": ["AI 아키텍처", "시스템 소프트웨어"],
+    "link": "#"
+  },
+  {
+    "type": "skill",
+    "year": "Core Stack",
+    "title": "AI 연동 및 게임 클라이언트 아키텍처",
+    "description": "Spiking Neural Network 학습 모델 파이프라인 제어 및 Unity 엔진 기반의 최적화 메모리 설계 능력을 보유하고 있습니다.",
+    "detail": "■ 보유 역량 상세 리포트\n- PyTorch 및 커스텀 가속 도구를 결합한 SNN 모델 변환/수행 역량 보유\n- Unity 엔진 내 컴포넌트 아키텍처 최적화 및 런타임 가비지 컬렉션(GC) 최소화를 위한 가중치 자료구조 풀링 기법 능숙\n- C# 및 Python 기반의 서로 다른 플랫폼 간 소켓 통신 및 파일 인코딩 가속 브리지 설계 가능",
+    "tags": ["PyTorch", "Unity", "C#", "Python"],
+    "link": "#"
+  },
+  {
+    "type": "award",
+    "year": "2025.11",
+    "title": "AI 및 혁신 소프트웨어 경진대회 최우수상",
+    "description": "행정 문서 데이터 임베딩 기반의 검색 증강 생성(RAG) 검색 도구를 출품하여 시나리오 부문 전체 1위를 달성했습니다.",
+    "detail": "■ 수상 및 솔루션 정보\n- 대규모 비정형 문서 텍스트 청크 단위 임베딩 분할 프로세스 독자 기획\n- 벡터 데이터베이스(Vector DB) 연동을 통해 할루시네이션(환각 현상)을 원천 차단하는 RAG 프레임워크 핵심 아키텍처 구축\n- 시나리오 실증 부문 평가에서 검색 정확도와 답변 속도 결합 스코어 최고점을 획득하며 과학기술정보통신부 훈격 최우수상 수상",
+    "tags": ["과기정통부", "RAG", "최우수상"],
+    "link": "https://example.com"
   }
 ]

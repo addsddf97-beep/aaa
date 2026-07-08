@@ -3,43 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포트폴리오 & AI 챗봇</title>
+    <title>Universal Portfolio & Chatroom</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stile.css">
 </head>
 <body>
-
-    <!-- 헤더 섹션 -->
-    <header>
-        <div class="container">
-            <h1>My Research & Project Portfolio</h1>
-            <p>AI 연구 및 개발 프로젝트 아카이브</p>
-        </div>
-    </header>
-
-    <!-- 메인 콘텐츠 (프로젝트 카드 그리드) -->
-    <main class="container">
-        <section id="portfolio-section">
-            <h2>Featured Projects</h2>
-            <div id="projects-grid" class="projects-grid">
-                <!-- app.js에 의해 동적으로 카드가 삽입되는 공간 -->
-                <p class="loading">프로젝트 로딩 중...</p>
+    <div class="split-layout">
+        <aside class="left-panel">
+            <div class="brand-profile">
+                <h1 id="brand-title" class="theme-all">Portfolio Archive</h1>
+                <div class="profile-name">이은 <span class="profile-title">AI Researcher</span></div>
+                <p class="subtitle">개인 프로젝트, 기술 스택 및 종합 커리어 히스토리</p>
+                <div class="mode-switch-wrapper">
+                    <label class="theme-switch">
+                        <input type="checkbox" id="darkmode-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
-        </section>
-    </main>
-
-    <!-- 푸터 섹션 -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 AI Researcher Portfolio. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- 챗봇 위젯 자리 -->
-    <div id="chatbot-widget" class="chatbot-container">
-        <!-- widget.js에서 동적으로 UI를 주입합니다 -->
+            <div id="chatbot-widget" class="chatbot-container"></div>
+        </aside>
+        <main class="right-panel">
+            <section id="portfolio-section">
+                <div class="section-header">
+                    <h2>Career Timeline</h2>
+                    <p class="section-desc">필터를 선택하고 항목을 클릭하면 상세 내용을 볼 수 있습니다.</p>
+                </div>
+                <nav class="timeline-filters">
+                    <button class="filter-btn active" data-filter="all">전체보기</button>
+                    <button class="filter-btn" data-filter="project">프로젝트</button>
+                    <button class="filter-btn" data-filter="experience">대외활동</button>
+                    <button class="filter-btn" data-filter="education">학력·교육</button>
+                    <button class="filter-btn" data-filter="skill">기술스택</button>
+                    <button class="filter-btn" data-filter="award">수상경력</button>
+                </nav>
+                <div id="projects-grid" class="projects-timeline">
+                    <p class="loading">이력 데이터를 로드하는 중...</p>
+                </div>
+            </section>
+            <footer><p>&copy; 2026 Portfolio Archive. All rights reserved.</p></footer>
+        </main>
     </div>
-
-    <!-- 스크립트 연결 -->
+    <div id="detail-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-btn">&times;</button>
+            <div class="modal-header">
+                <span id="modal-type" class="type-badge">Project</span>
+                <span id="modal-year" class="item-period">2026</span>
+            </div>
+            <h3 id="modal-title">제목</h3>
+            <div id="modal-tags" class="tags"></div>
+            <div class="modal-body"><p id="modal-description">상세 내용 설명입니다.</p></div>
+            <div class="modal-footer"><a id="modal-link" href="#" target="_blank" class="project-link">자세히 보기</a></div>
+        </div>
+    </div>
     <script src="app.js"></script>
     <script src="widget.js"></script>
 </body>

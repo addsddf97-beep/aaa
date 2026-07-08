@@ -1,0 +1,12 @@
+{
+  "id": "neuromorphic_edge_ai",
+  "title": "뉴로모픽 칩 기반 Edge AI",
+  "description": "Loihi, SpiNNaker 등 뉴로모픽 프로세서를 대상으로 SNN 모델을 배포하고, 기존 GPU 기반 ANN과 추론 속도 및 전력 효율을 비교하는 Edge AI 프로젝트.",
+  "tags": [
+    "snn",
+    "neuromorphic",
+    "edge-ai",
+    "low-power"
+  ],
+  "year": "2026"
+}

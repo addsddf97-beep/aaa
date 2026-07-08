@@ -1,0 +1,12 @@
+{
+  "id": "snn_object_detection",
+  "title": "SNN 기반 저전력 객체 인식",
+  "description": "Spiking Neural Network를 이용하여 이벤트 카메라 데이터를 실시간으로 처리하고 저전력 객체 인식 모델을 구현. 뉴로모픽 하드웨어 적용을 고려한 스파이크 기반 추론을 수행.",
+  "tags": [
+    "snn",
+    "neuromorphic",
+    "computer-vision",
+    "event-camera"
+  ],
+  "year": "2026"
+}

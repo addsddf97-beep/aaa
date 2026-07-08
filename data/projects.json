@@ -1,25 +1,35 @@
 [
   {
-    "id": "interlocutor-adaptation",
-    "title": "Interlocutor Adaptation Dialogue System",
-    "description": "Incrementally Revealed Persona 환경에서 대화 상대방의 변화에 동적으로 적응하는 대화 생성 프레임워크 연구 및 데이터셋 구축",
+    "id": "neuromorphic_edge_ai",
+    "title": "뉴로모픽 칩 기반 Edge AI",
+    "description": "Loihi, SpiNNaker 등 뉴로모픽 프로세서를 대상으로 SNN 모델을 배포하고, 기존 GPU 기반 ANN과 추론 속도 및 전력 효율을 비교하는 Edge AI 프로젝트.",
     "tags": [
-      "NLP",
-      "Persona",
-      "Dialogue System",
-      "Dataset"
+      "snn",
+      "neuromorphic",
+      "edge-ai",
+      "low-power"
     ],
-    "link": "https://github.com/example/interlocutor-adaptation"
+    "year": "2026"
   },
   {
-    "id": "persona-scheduling",
-    "title": "Dynamic Persona Scheduling Framework",
-    "description": "대화 문맥에 따라 페르소나의 활성화 필요성을 실시간으로 평가하고 스케줄링하는 모듈형 아키텍처 개발",
+    "id": "snn_ai",
+    "title": "비 역전파 ai 알고리즘",
+    "description": "뉴로모픽 칩을 이용한 snn방식의 ai알고리즘",
     "tags": [
-      "LLM",
-      "Prompt Engineering",
-      "Evaluation Metric"
+      "snn"
     ],
-    "link": "#"
+    "year": "2026"
+  },
+  {
+    "id": "snn_object_detection",
+    "title": "SNN 기반 저전력 객체 인식",
+    "description": "Spiking Neural Network를 이용하여 이벤트 카메라 데이터를 실시간으로 처리하고 저전력 객체 인식 모델을 구현. 뉴로모픽 하드웨어 적용을 고려한 스파이크 기반 추론을 수행.",
+    "tags": [
+      "snn",
+      "neuromorphic",
+      "computer-vision",
+      "event-camera"
+    ],
+    "year": "2026"
   }
 ]
