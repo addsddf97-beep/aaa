@@ -1,0 +1,138 @@
+/* 기본 레이아웃 리셋 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 & 푸터 */
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 40px;
+    background-color: #eee;
+}
+
+/* 프로젝트 그리드 레이아웃 (섹션 2 핵심) */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.project-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+}
+.project-card h3 {
+    margin-bottom: 10px;
+}
+.tags {
+    margin: 15px 0;
+}
+.badge {
+    display: inline-block;
+    background: #e0e0e0;
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+.project-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto;
+}
+.empty,
+.error,
+.loading {
+    grid-column: 1 / -1;
+}
+
+/* 챗봇 고정 위젯 레이아웃 (섹션 3 자리 선점) */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    background: #fff;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 1000;
+}
+.chatbot-header {
+    background: #333;
+    color: #fff;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chatbot-header button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.chatbot-body {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+.chatbot-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    background: #fdfdfd;
+}
+.message.system {
+    color: #c0392b;
+    background: #fadbd8;
+    padding: 8px;
+    border-radius: 4px;
+}
+.chatbot-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+.chatbot-input-area input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+.chatbot-input-area button {
+    padding: 10px 15px;
+    background: #eee;
+    border: none;
+    color: #aaa;
+}

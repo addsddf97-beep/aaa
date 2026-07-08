@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포트폴리오 & AI 챗봇</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 헤더 섹션 -->
+    <header>
+        <div class="container">
+            <h1>My Research & Project Portfolio</h1>
+            <p>AI 연구 및 개발 프로젝트 아카이브</p>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 (프로젝트 카드 그리드) -->
+    <main class="container">
+        <section id="portfolio-section">
+            <h2>Featured Projects</h2>
+            <div id="projects-grid" class="projects-grid">
+                <!-- app.js에 의해 동적으로 카드가 삽입되는 공간 -->
+                <p class="loading">프로젝트 로딩 중...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 푸터 섹션 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AI Researcher Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 챗봇 위젯 자리 -->
+    <div id="chatbot-widget" class="chatbot-container">
+        <!-- widget.js에서 동적으로 UI를 주입합니다 -->
+    </div>
+
+    <!-- 스크립트 연결 -->
+    <script src="app.js"></script>
+    <script src="widget.js"></script>
+</body>
+</html>

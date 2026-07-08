@@ -1,0 +1,25 @@
+[
+  {
+    "id": "interlocutor-adaptation",
+    "title": "Interlocutor Adaptation Dialogue System",
+    "description": "Incrementally Revealed Persona 환경에서 대화 상대방의 변화에 동적으로 적응하는 대화 생성 프레임워크 연구 및 데이터셋 구축",
+    "tags": [
+      "NLP",
+      "Persona",
+      "Dialogue System",
+      "Dataset"
+    ],
+    "link": "https://github.com/example/interlocutor-adaptation"
+  },
+  {
+    "id": "persona-scheduling",
+    "title": "Dynamic Persona Scheduling Framework",
+    "description": "대화 문맥에 따라 페르소나의 활성화 필요성을 실시간으로 평가하고 스케줄링하는 모듈형 아키텍처 개발",
+    "tags": [
+      "LLM",
+      "Prompt Engineering",
+      "Evaluation Metric"
+    ],
+    "link": "#"
+  }
+]

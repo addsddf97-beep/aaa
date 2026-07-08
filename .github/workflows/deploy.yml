@@ -1,0 +1,111 @@
+# GitHub Actions - 자동 배포 워크플로우
+name: Deploy to Render and GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 push하면 자동 배포
+  workflow_dispatch:  # 수동 실행 가능
+
+jobs:
+  # Job 1: 백엔드 API 배포 (Render)
+  deploy-api:
+    name: Deploy API to Render
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build projects.json
+        run: |
+          echo "🔨 프로젝트 데이터 빌드 중..."
+          python data/build.py
+
+      - name: Run tests (optional)
+        run: |
+          echo "✅ 테스트 생략 (추후 추가 가능)"
+          # pytest tests/ 등 추가 가능
+
+      - name: Notify Render deployment
+        run: |
+          echo "🚀 Render는 GitHub push를 감지하여 자동 배포합니다"
+          echo "📊 배포 상태: https://dashboard.render.com"
+
+  # Job 2: 프론트엔드 배포 (GitHub Pages)
+  deploy-frontend:
+    name: Deploy Frontend to GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Build projects.json
+        run: |
+          echo "🔨 프로젝트 데이터 빌드 중..."
+          python data/build.py
+
+      - name: Check GitHub Pages availability
+        id: pages_status
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          http_status=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages")
+
+          if [ "$http_status" = "200" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "✅ GitHub Pages가 활성화되어 있습니다."
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "⚠️ GitHub Pages가 아직 활성화되지 않았습니다. 배포를 건너뜁니다."
+          fi
+
+      - name: Setup Pages
+        if: steps.pages_status.outputs.enabled == 'true'
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        if: steps.pages_status.outputs.enabled == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './web'
+
+      - name: Deploy to GitHub Pages
+        if: steps.pages_status.outputs.enabled == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Output deployment URL
+        if: steps.pages_status.outputs.enabled == 'true'
+        run: |
+          echo "✅ 프론트엔드 배포 완료!"
+          echo "🌐 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+
+      - name: Skip GitHub Pages deployment
+        if: steps.pages_status.outputs.enabled != 'true'
+        run: |
+          echo "GitHub Pages가 아직 설정되지 않아 프론트엔드 배포를 건너뜁니다."
+          echo "Repository Settings -> Pages에서 Source를 GitHub Actions로 설정하면 자동 배포가 활성화됩니다."

@@ -1,0 +1,7 @@
+{
+  "id": "interlocutor-adaptation",
+  "title": "Interlocutor Adaptation Dialogue System",
+  "description": "Incrementally Revealed Persona 환경에서 대화 상대방의 변화에 동적으로 적응하는 대화 생성 프레임워크 연구 및 데이터셋 구축",
+  "tags": ["NLP", "Persona", "Dialogue System", "Dataset"],
+  "link": "https://github.com/example/interlocutor-adaptation"
+}

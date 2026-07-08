@@ -1,0 +1,7 @@
+{
+  "id": "persona-scheduling",
+  "title": "Dynamic Persona Scheduling Framework",
+  "description": "대화 문맥에 따라 페르소나의 활성화 필요성을 실시간으로 평가하고 스케줄링하는 모듈형 아키텍처 개발",
+  "tags": ["LLM", "Prompt Engineering", "Evaluation Metric"],
+  "link": "#"
+}
