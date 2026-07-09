@@ -1,0 +1,72 @@
+[
+  {
+    "id": "easy_01_frontend_firebase",
+    "difficulty": "easy",
+    "question": "프론트엔드와 Firebase를 사용한 프로젝트는 무엇인가요?",
+    "query_variants": ["Firebase 인증 이미지 업로드", "JavaScript Firebase 프로젝트", "프론트엔드 화면 담당"],
+    "expected_sources": ["분실물 찾기 웹서비스"],
+    "expected_keywords": ["분실물 찾기 웹서비스", "Firebase", "이미지 업로드", "프론트엔드"],
+    "should_abstain": false,
+    "intended_behavior": "분실물 찾기 웹서비스를 찾고 Firebase 인증, 이미지 업로드, 프론트엔드 역할을 설명한다."
+  },
+  {
+    "id": "easy_02_salary_abstain",
+    "difficulty": "easy",
+    "question": "지원자의 희망 연봉은 얼마인가요?",
+    "query_variants": ["희망 연봉", "원하는 급여", "연봉 조건"],
+    "expected_sources": [],
+    "expected_keywords": [],
+    "should_abstain": true,
+    "intended_behavior": "포트폴리오에 없는 정보라고 보류 응답하고 추측하지 않는다."
+  },
+  {
+    "id": "hard_01_api_and_ai_compare",
+    "difficulty": "hard",
+    "question": "API를 만든 프로젝트와 AI를 활용한 프로젝트를 나눠서 설명하고, 둘 다 해당되는 프로젝트가 있으면 따로 표시해줘.",
+    "query_variants": ["백엔드 API 구현 프로젝트", "Gemini 또는 Hugging Face를 사용한 AI 프로젝트", "API와 AI가 모두 들어간 프로젝트"],
+    "expected_sources": ["급식 만족도 분석 서비스", "AI 자기소개서 피드백 도구", "감정 분석 웹앱", "도서 추천 챗봇"],
+    "expected_keywords": ["API", "AI", "AI 자기소개서 피드백 도구", "감정 분석 웹앱"],
+    "should_abstain": false,
+    "intended_behavior": "API 관련 프로젝트와 AI 관련 프로젝트를 구분하고, AI 자기소개서 피드백 도구처럼 둘 다 해당되는 사례를 드러낸다."
+  },
+  {
+    "id": "hard_02_multi_metric_results",
+    "difficulty": "hard",
+    "question": "급식 만족도 분석 서비스, 교실 에너지 절약 IoT, 스터디 출석 관리 봇 세 프로젝트를 비교해서, 각각 어떤 문제를 해결했고 어떤 수치 성과가 나왔는지 설명해줘.",
+    "query_variants": ["급식 만족도 응답 1200건", "교실 에너지 조명 낭비 38분", "스터디 출석 관리 40명 70% 감소"],
+    "expected_sources": ["급식 만족도 분석 서비스", "교실 에너지 절약 IoT", "스터디 출석 관리 봇"],
+    "expected_keywords": ["1,200", "38분", "40명", "문제"],
+    "should_abstain": false,
+    "intended_behavior": "지정된 세 프로젝트를 모두 다루고, 각 프로젝트의 해결 문제와 성과 수치를 한 쌍으로 비교한다."
+  },
+  {
+    "id": "hard_03_rag_vs_bot",
+    "difficulty": "hard",
+    "question": "챗봇이나 봇 프로젝트를 모두 찾고, 그중 RAG를 쓴 것과 단순 자동화 봇을 구분해서 역할을 설명해줘.",
+    "query_variants": ["RAG 챗봇 프로젝트", "Discord 봇 자동화 프로젝트", "챗봇과 봇의 차이"],
+    "expected_sources": ["도서 추천 챗봇", "스터디 출석 관리 봇"],
+    "expected_keywords": ["RAG", "도서 추천 챗봇", "스터디 출석 관리 봇", "자동화"],
+    "should_abstain": false,
+    "intended_behavior": "도서 추천 챗봇과 스터디 출석 관리 봇을 모두 찾고, RAG 기반 추천과 디스코드 자동화 봇을 구분한다."
+  },
+  {
+    "id": "hard_04_school_services_rank",
+    "difficulty": "hard",
+    "question": "급식, 분실물, 스터디, 도서관처럼 학교 생활 문제를 해결한 서비스를 모두 찾아서, 학생에게 직접 도움이 되는 순서로 정리하고 근거를 붙여줘.",
+    "query_variants": ["급식 만족도 서비스", "분실물 찾기 서비스", "스터디 출석 관리", "도서관 도서 추천"],
+    "expected_sources": ["급식 만족도 분석 서비스", "분실물 찾기 웹서비스", "스터디 출석 관리 봇", "도서 추천 챗봇"],
+    "expected_keywords": ["급식", "분실물", "스터디", "도서"],
+    "should_abstain": false,
+    "intended_behavior": "급식, 분실물, 스터디, 도서관 관련 서비스를 모두 찾고, 학생에게 직접 도움이 되는 이유를 근거와 함께 정렬한다."
+  },
+  {
+    "id": "hard_05_answer_known_and_abstain_unknown",
+    "difficulty": "hard",
+    "question": "지원자가 백엔드 API를 만든 경험과 대표 성과를 말해주고, 회사 인턴 경험도 있으면 같이 알려줘.",
+    "query_variants": ["백엔드 API 담당 프로젝트 성과", "FastAPI Flask API 경험", "회사 인턴 경험"],
+    "expected_sources": ["급식 만족도 분석 서비스", "AI 자기소개서 피드백 도구", "감정 분석 웹앱"],
+    "expected_keywords": ["API", "급식 만족도 분석 서비스", "AI 자기소개서 피드백 도구"],
+    "should_abstain": true,
+    "intended_behavior": "API 경험과 성과는 프로젝트 근거로 답하되, 인턴 경험은 포트폴리오에 없는 정보라고 따로 보류한다."
+  }
+]

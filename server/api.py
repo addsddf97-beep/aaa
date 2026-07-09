@@ -77,7 +77,7 @@ async def startup_event():
     rag_engine = build_rag_engine(
         projects_json_path=projects_json,
         gemini_api_key=gemini_api_key,
-        rebuild=False,  # 기존 DB 재사용
+        rebuild=True,  # 기존 DB 재사용
         top_k=2,
         chunk_size=1000,
         chunk_overlap=0,

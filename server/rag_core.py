@@ -1,5 +1,5 @@
 """
-RAG 핵심 엔진: 검색 + 생성 + 출처 반환
+RAG 핵심 엔진: 검색 + 생성 + 출처 반환 (최종 싱크 버전)
 
 학생들은 이 파일에서 다음을 튜닝할 수 있습니다:
 - top_k (검색 개수)
@@ -82,7 +82,7 @@ class RAGEngine:
             model="models/gemini-2.5-flash",
             google_api_key=gemini_api_key,
             temperature=0.3,
-            max_output_tokens=300,
+            max_output_tokens=700,
         )
 
         # 3. 벡터 스토어 초기화
@@ -95,34 +95,52 @@ class RAGEngine:
 
     def load_projects(self) -> List[Document]:
         """
-        projects.json을 로드하여 LangChain Document 형식으로 변환
-
-        각 프로젝트를 하나의 Document로 만듭니다.
+        [필드 동기화 완료]
+        projects.json을 로드하여 LangChain Document 형식으로 변환합니다.
+        웹 화면 모달창용 'detail' 필드와 RAG용 필드들을 모두 합쳐 AI에게 주입합니다.
         """
         with open(self.projects_json_path, 'r', encoding='utf-8') as f:
             projects = json.load(f)
 
         documents = []
         for idx, project in enumerate(projects):
-            # 프로젝트 정보를 텍스트로 변환
-            content = f"""프로젝트: {project.get('title', 'N/A')}
-설명: {project.get('description', 'N/A')}
-태그: {', '.join(project.get('tags', []))}
-링크: {project.get('link', 'N/A')}"""
+            # 1. 원본 JSON 필드 안전하게 바인딩 (프로젝트 외의 모든 이력 타입 포괄 호환)
+            title = project.get('title') or project.get('name') or f"project_{idx}"
+            description = project.get('description', '')
+            
+            # 신규 보강된 상세 내역 및 역량 지표 로드
+            detail = project.get('detail') or description
+            role = project.get('role', 'N/A')
+            result = project.get('result', 'N/A')
+            
+            tags_list = project.get('tags') or project.get('stack') or []
+            link = project.get('link') or "N/A"
+            period = project.get('period') or project.get('year') or "N/A"
+            item_type = project.get('type', 'project')
 
-            # Document 객체 생성 (메타데이터에 출처 정보 포함)
-            # ChromaDB는 메타데이터에 리스트를 허용하지 않으므로 문자열로 변환
+            # 2. 모달 팝업 텍스트 깊이와 AI 검색 풀(Pool)의 지식 깊이를 1:1로 일치화
+            content = f"""항목 유형: {item_type}
+제목/이름: {title}
+진행 기간: {period}
+개요 설명: {description}
+상세 수행 내용: {detail}
+담당 역할 및 태스크: {role}
+핵심 성과 및 결과 지표: {result}
+사용 기술 및 태그: {', '.join(tags_list) if isinstance(tags_list, list) else tags_list}
+링크: {link}"""
+
+            # 3. 크로마 DB 매핑용 랭체인 문서 규격화 (출처 추적용 메타데이터 삽입)
             doc = Document(
                 page_content=content,
                 metadata={
-                    'source': project.get('title', f'project_{idx}'),
+                    'source': title,
                     'project_id': idx,
-                    'tags': ', '.join(project.get('tags', []))  # 리스트 → 문자열
+                    'tags': ', '.join(tags_list) if isinstance(tags_list, list) else tags_list
                 }
             )
             documents.append(doc)
 
-        print(f"✅ {len(documents)}개 프로젝트 로드 완료")
+        print(f"✅ [RAG 동기화 가동] {len(documents)}개 항목의 상세 종합 컨텍스트 빌드 완료")
         return documents
 
     def build_vectorstore(self):
@@ -182,7 +200,7 @@ class RAGEngine:
 
     def query(self, question: str) -> Dict[str, Any]:
         """
-        질문에 대한 답변 + 출처 반환
+        질문에 대한 답변 + 출처 반환 (출처 추적 완벽 보정 버전)
 
         Args:
             question: 사용자 질문
@@ -196,21 +214,39 @@ class RAGEngine:
         if self.qa_chain is None:
             raise ValueError("QA Chain이 없습니다. build_qa_chain()을 먼저 실행하세요.")
 
-        # RAG 실행
+        # 1. 체인을 구동하여 AI 답변 생성
         result = self.qa_chain.invoke({"query": question})
+        answer_text = result.get('result') or result.get('answer') or "답변을 생성하지 못했습니다."
 
-        # 출처 정보 추출
+        # 2. [보정] 체인 내부 출처가 유실되는 문제를 방지하기 위해 
+        #    벡터 스토어에서 직접 유사 문서(Top_K)를 한 번 더 명확하게 조회합니다.
         sources = []
-        for doc in result.get('source_documents', []):
-            sources.append({
-                'title': doc.metadata.get('source', 'Unknown'),
-                'content_preview': doc.page_content[:100] + "..."
-            })
+        try:
+            # 질문과 가장 연관성 높은 원본 문서 조각들을 가져옵니다.
+            matched_docs = self.vectorstore.similarity_search(question, k=self.top_k)
+            
+            for doc in matched_docs:
+                # 우리가 JSON 파싱할 때 metadata['source']에 저장했던 프로젝트 타이틀 추출
+                source_name = doc.metadata.get('source') or doc.metadata.get('name')
+                
+                # 중복되지 않게 리스트에 담아줍니다.
+                if source_name and source_name not in sources:
+                    sources.append(source_name)
+        except Exception as e:
+            print(f"⚠️ 출처 문서 역추적 중 경고 발생: {e}")
 
+        # 3. 만약 체인 내부에서 우연히 꺼내진 소스가 있다면 백업으로 합쳐줍니다.
+        for doc in result.get('source_documents', []):
+            source_name = doc.metadata.get('source') or doc.metadata.get('name')
+            if source_name and source_name not in sources:
+                sources.append(source_name)
+
+        # api.py의 ChatResponse 데이터 모델 규격에 맞춰 최종 리턴
         return {
-            'answer': result['result'],
+            'answer': answer_text,
             'sources': sources
         }
+
 
     @classmethod
     def from_existing_db(
